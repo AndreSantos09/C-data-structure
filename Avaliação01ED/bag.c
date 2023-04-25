@@ -32,14 +32,48 @@ int insert(Bag *bag, int e)
 }
 int get(Bag *bag)
 {
+    int i = 0;
+    do
+    {
+        i = rand() % bag->n;
+    } while (bag->data[i] == 0);
+    printf("Elemento %i retirado de bag->[%i].\n\n", bag->data[i], i);
+    bag->data[i] = 0;
+
+    return i;
+
     return 0;
 }
 int search(Bag *bag, int e)
 {
+    for (int i = 0; i < bag->n; i++)
+    {
+        if (bag->data[i] == e)
+        {
+            printf("%i encontrado em bag->[%i].\n\n", e, i);
+            return i;
+        }
+    }
     return 0;
 }
 int size(Bag *bag)
 {
-    return 0;
+    while (bag->data[bag->size] != 0)
+    {
+        bag->size++;
+    }
+    return bag->size;
 }
-void printAll(Bag *bag) {}
+void printAll(Bag *bag)
+{
+    printf("Bag: [");
+    for (int i = 0; i < bag->n; i++)
+    {
+        printf("%i", bag->data[i]);
+        if (i < bag->n - 1)
+        {
+            printf(", ");
+        }
+    }
+    printf("]\n\n");
+}
